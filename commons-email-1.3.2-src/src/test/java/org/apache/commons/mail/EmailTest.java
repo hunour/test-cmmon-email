@@ -12,6 +12,9 @@ public class EmailTest {
 	private static String[] TEST_EMAILS = {"ab@bc.com", "a.b@c.org", "abcdefghijklmnopqrst@abcdefghijklmnopqrst.com.bd"};
 	private static String[] BAD_TEST_EMAILS = {};
 	
+	private static String goodHeaderName = "headerName";
+	private static String goodHeaderValue = "some header value";
+	
 	@Before
 	public void setUpEmailTest() throws Exception{
 		email = new EmailConcrete();
@@ -33,6 +36,18 @@ public class EmailTest {
 			email.addCc(TEST_EMAILS[1]);
 			assertNotNull(email.getCcAddresses());
 			assertEquals(1, email.getCcAddresses().size());	
+		}
+		
+		//test addHeader(String name, String value)
+		@Test
+		public void testAddHeader() throws Exception{
+			email.addHeader(this.goodHeaderName, this.goodHeaderValue);
+		}
+		
+		@Test (expected = IllegalArgumentException.class)
+		public void testAddHeaderNullVal() throws Exception{
+			String name = "TestHeader";
+			email.addHeader(name, null);
 		}
 		
 }
