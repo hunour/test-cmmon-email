@@ -2,6 +2,8 @@ package org.apache.commons.mail;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -171,6 +173,15 @@ public class EmailTest {
 		assertEquals(host, email.getHostName());
 		assertNotNull(email.getBccAddresses());
 		assertNotNull(email.getMailSession());
+	}
+	
+	@Test
+	public void testGetSentDate() throws Exception
+	{
+		Date date = new Date(123);
+		email.setSentDate(date);
+		assertEquals(date, email.getSentDate());
+		assertNotNull(email.getSentDate());
 	}
 	
 }
