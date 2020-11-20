@@ -184,4 +184,13 @@ public class EmailTest {
 		assertNotNull(email.getSentDate());
 	}
 	
+	@Test
+	public void testGetSocketConnectonTimeout() throws Exception
+	{
+		int socketConTimeout = 123;
+		email.setSocketConnectionTimeout(socketConTimeout);
+		assertEquals(socketConTimeout, email.getSocketConnectionTimeout());
+		assertNotNull(email.getSocketConnectionTimeout());
+	}
+	
 }
