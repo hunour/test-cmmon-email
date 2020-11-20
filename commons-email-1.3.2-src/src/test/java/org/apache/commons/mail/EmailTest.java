@@ -144,5 +144,21 @@ public class EmailTest {
 		email.addReplyTo(TEST_EMAILS[2]);
 		email.buildMimeMessage();
 	}	
-		
+	
+	@Test
+	public void testGetHostName() throws Exception
+	{
+		String host = "Hostname";
+		email.setHostName(host);
+		assertEquals(host, email.getHostName());
+	}
+	
+	
+	@Test (expected = EmailException.class)
+	public void testGetHostNameNull() throws EmailException
+	{
+		email.setHostName(null);
+		assertNotNull(email.getHostName());
+	}
+	
 }
