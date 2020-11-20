@@ -50,4 +50,11 @@ public class EmailTest {
 			email.addHeader(name, null);
 		}
 		
+		@Test (expected = IllegalArgumentException.class)
+		public void testAddHeaderNullName() throws Exception{
+			String value = "1";
+			email.addHeader(null, value);
+		}
+		
+		
 }
