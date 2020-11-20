@@ -193,4 +193,12 @@ public class EmailTest {
 		assertNotNull(email.getSocketConnectionTimeout());
 	}
 	
+	@Test
+	public void testSetFrom() throws Exception
+	{
+		String fromEmail = TEST_EMAILS[1];
+		email.setFrom(fromEmail);
+		assertEquals(fromEmail, email.getFromAddress().toString());
+	}
+	
 }
