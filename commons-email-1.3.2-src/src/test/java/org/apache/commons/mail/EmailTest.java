@@ -161,4 +161,16 @@ public class EmailTest {
 		assertNotNull(email.getHostName());
 	}
 	
+	@Test
+	public void testGetMailSession() throws Exception
+	{
+		String host = "Hostname";
+		email.setHostName(host);
+		email.setBounceAddress(TEST_EMAILS[2]);
+		email.setAuthentication("some_username", "some_password");
+		assertEquals(host, email.getHostName());
+		assertNotNull(email.getBccAddresses());
+		assertNotNull(email.getMailSession());
+	}
+	
 }
