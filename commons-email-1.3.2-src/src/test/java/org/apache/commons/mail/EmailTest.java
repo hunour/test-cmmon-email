@@ -63,88 +63,86 @@ public class EmailTest {
 			email.addReplyTo(TEST_EMAILS[2], "SOME_NAME");
 			assertNotNull(email.getReplyToAddresses());
 		}
-		
 		//test buildMimeMessage()
-				@Test 
-				public void testBuildMimeMessage() throws Exception
-				{
-					String subject = "Message Subject";
-					email.setSubject(subject);
-					assertEquals(subject, email.getSubject());
-					
-					String contentType = "Content Type";
-					email.updateContentType(contentType);
-					assertNotNull(contentType);
-					
-					String fromEmail = TEST_EMAILS[1];
-					email.setFrom(fromEmail);
-					assertEquals(fromEmail, email.getFromAddress().toString());
-					
-					String [] toEmails = TEST_EMAILS;
-					email.addTo(toEmails);
-					assertEquals(3, email.getToAddresses().size());
-					
-					String reply_To = TEST_EMAILS[2];
-					email.addReplyTo(reply_To);
-					assertEquals(1, email.getReplyToAddresses().size());
-					
-					
-					String [] bcc = TEST_EMAILS;
-					email.addBcc(bcc);
-					assertEquals(3, email.getBccAddresses().size());
-					
-					email.addHeader(this.goodHeaderName, this.goodHeaderValue);
-					
-					email.setCharset("UTF-8");
-					
-					String host = "Hostname";
-					email.setHostName(host);
-					assertEquals(host, email.getHostName());
-					
-					email.buildMimeMessage();
-					email.buildMimeMessage();
-				}
+		@Test 
+		public void testBuildMimeMessage() throws Exception
+		{
+			String subject = "Message Subject";
+			email.setSubject(subject);
+			assertEquals(subject, email.getSubject());
 			
-			@Test  (expected = IllegalStateException.class)
-			public void testBuildMimeMessageTwice() throws Exception
-			{
-				String host = "hostName";
-				email.setHostName(host);
-				email.setFrom(TEST_EMAILS[1]);
-				email.addReplyTo(TEST_EMAILS[2]);
-				email.setTo(email.getReplyToAddresses());
-				email.buildMimeMessage();
-				email.buildMimeMessage();
-			}
+			String contentType = "Content Type";
+			email.updateContentType(contentType);
+			assertNotNull(contentType);
 			
-			@Test (expected = EmailException.class)
-			public void testBuildMimeMessageNullFrom() throws Exception
-			{
-				String host = "hostName";
-				email.setHostName(host);
-				email.addReplyTo(TEST_EMAILS[2]);
-				email.setTo(email.getReplyToAddresses());
-				email.buildMimeMessage();
-			}
-			@Test (expected = EmailException.class)
-			public void testBuildMimeMessageNullHostname() throws Exception
-			{
-				//String host = "hostName";
-				//email.setHostName(host);
-				email.setFrom(TEST_EMAILS[1]);
-				email.addReplyTo(TEST_EMAILS[2]);
-				email.setTo(email.getReplyToAddresses());
-				email.buildMimeMessage();
-			}
+			String fromEmail = TEST_EMAILS[1];
+			email.setFrom(fromEmail);
+			assertEquals(fromEmail, email.getFromAddress().toString());
 			
-			@Test (expected = EmailException.class)
-			public void testBuildMimeMessageNullTo() throws Exception{
-				String hostname = "HostName";
-				email.setHostName(hostname);
-				email.setFrom(TEST_EMAILS[1]);
-				email.addReplyTo(TEST_EMAILS[2]);
-				email.buildMimeMessage();
-			}
+			String [] toEmails = TEST_EMAILS;
+			email.addTo(toEmails);
+			assertEquals(3, email.getToAddresses().size());
 			
+			String reply_To = TEST_EMAILS[2];
+			email.addReplyTo(reply_To);
+			assertEquals(1, email.getReplyToAddresses().size());
+			
+			
+			String [] bcc = TEST_EMAILS;
+			email.addBcc(bcc);
+			assertEquals(3, email.getBccAddresses().size());
+			
+			email.addHeader(this.goodHeaderName, this.goodHeaderValue);
+			
+			email.setCharset("UTF-8");
+			
+			String host = "Hostname";
+			email.setHostName(host);
+			assertEquals(host, email.getHostName());
+			
+			email.buildMimeMessage();
+			email.buildMimeMessage();
+		}
+	
+	@Test  (expected = IllegalStateException.class)
+	public void testBuildMimeMessageTwice() throws Exception
+	{
+		String host = "hostName";
+		email.setHostName(host);
+		email.setFrom(TEST_EMAILS[1]);
+		email.addReplyTo(TEST_EMAILS[2]);
+		email.setTo(email.getReplyToAddresses());
+		email.buildMimeMessage();
+		email.buildMimeMessage();
+	}
+	
+	@Test (expected = EmailException.class)
+	public void testBuildMimeMessageNullFrom() throws Exception
+	{
+		String host = "hostName";
+		email.setHostName(host);
+		email.addReplyTo(TEST_EMAILS[2]);
+		email.setTo(email.getReplyToAddresses());
+		email.buildMimeMessage();
+	}
+	@Test (expected = EmailException.class)
+	public void testBuildMimeMessageNullHostname() throws Exception
+	{
+		//String host = "hostName";
+		//email.setHostName(host);
+		email.setFrom(TEST_EMAILS[1]);
+		email.addReplyTo(TEST_EMAILS[2]);
+		email.setTo(email.getReplyToAddresses());
+		email.buildMimeMessage();
+	}
+	
+	@Test (expected = EmailException.class)
+	public void testBuildMimeMessageNullTo() throws Exception{
+		String hostname = "HostName";
+		email.setHostName(hostname);
+		email.setFrom(TEST_EMAILS[1]);
+		email.addReplyTo(TEST_EMAILS[2]);
+		email.buildMimeMessage();
+	}	
 		
 }
